@@ -16,7 +16,7 @@ def lambda_handler(event, context):
     req = requests.get(f'http://ip-api.com/json/{ip_address}')
     location_data = req.json()
     
-    table.put_item(Item={'IpAddress': ip_address, 'City': location_data["city"], "Lat": Decimal(str(location_data["lat"])), "Lon": Decimal(str(location_data["lon"])),})
+    table.put_item(Item={'IpAddress': ip_address, 'City': location_data["city"], 'Region': location_data["regionName"],"Lat": Decimal(str(location_data["lat"])), "Lon": Decimal(str(location_data["lon"])),})
     
     return {
         "statusCode": 200,
